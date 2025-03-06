@@ -80,12 +80,9 @@ mod ebpf;
 mod error;
 mod uprobe;
 
-use std::{
-    collections::{HashMap, VecDeque},
-    os::unix::io::AsRawFd,
-    time::Duration,
-};
+use std::{collections::VecDeque, os::unix::io::AsRawFd, time::Duration};
 
+use hashbrown::HashMap;
 use mio::{Events, Interest, Poll, Token, event::Event, unix::SourceFd};
 
 use analyze_target::AnalyzeTarget;

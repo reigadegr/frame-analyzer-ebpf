@@ -16,15 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-use std::{
-    collections::{HashMap, VecDeque},
-    ptr,
-    time::Duration,
-};
-
-use frame_analyzer_ebpf_common::FrameSignal;
+use std::{collections::VecDeque, ptr, time::Duration};
 
 use crate::uprobe::UprobeHandler;
+use frame_analyzer_ebpf_common::FrameSignal;
+use hashbrown::HashMap;
 
 pub struct AnalyzeTarget {
     pub uprobe: UprobeHandler,

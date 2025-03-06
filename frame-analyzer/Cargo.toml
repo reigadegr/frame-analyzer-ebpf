@@ -18,6 +18,10 @@ thiserror = "2.0.11"
 ctor = "0.4.0"
 ctrlc = "3.4.4"
 mio = { version = "1.0.3", features = ["os-ext"] }
+hashbrown = { version = "0.15.2", default-features = false, features = [
+    "default-hasher",
+    "inline-more",
+] }
 
 [build-dependencies]
 anyhow = "1.0.96"
