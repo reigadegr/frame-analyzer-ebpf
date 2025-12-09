@@ -93,13 +93,19 @@ fn build_ebpf() -> Result<()> {
         ebpf_args.push("--debug");
 
         let _ = fs::remove_dir_all(target_dir.join("bin")); // clean up
-        Command::new("cargo")
+        let status = Command::new("cargo")
             .args(["install", "frame-analyzer-ebpf"])
+            .arg("--force")
             .args(ebpf_args)
             .args(["--root", target_dir_str])
             .env_remove("RUSTUP_TOOLCHAIN")
             .env("PATH", add_path(bin)?)
             .status()?;
+        if !status.success() {
+            panic!(
+                "Critical: Failed to install frame-analyzer-ebpf via cargo install. Check the output above for linker errors."
+            );
+        }
 
         #[cfg(debug_assertions)]
         let prefix_dir = &target_dir.join("bpfel-unknown-none").join("debug");
